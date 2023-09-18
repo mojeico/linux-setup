@@ -30,7 +30,6 @@ sudo chmod +x kubectl
 sudo mkdir -p ~/.local/bin
 sudo mv ./kubectl ~/.local/bin/kubectl
 
-
 sudo dnf copr enable atim/lazygit -y
 sudo dnf -y install lazygit
 
