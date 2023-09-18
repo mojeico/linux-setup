@@ -6,10 +6,7 @@ echo "test111"
 ####################################
 sudo yum -y update
 sudo yum -y upgrade 
-
-#sudo rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
-#sudo dnf -y install https://www.elrepo.org/elrepo-release-9.el9.elrepo.noarch.rpm
-#sudo dnf --enablerepo=elrepo-kernel -y install kernel-ml
+sudo dnf -y install snapd
 
 
 sudo yum -y install epel-release
@@ -30,16 +27,14 @@ sudo chmod +x kubectl
 sudo mkdir -p ~/.local/bin
 sudo mv ./kubectl ~/.local/bin/kubectl
 
-sudo dnf copr enable atim/lazygit -y
-sudo dnf -y install lazygit
 
-sudo dnf -y install fzf
+sudo dnf -y copr enable luminoso/k9s
+sudo dnf -y install k9s
 
-sudo yum install -y tmux
 
-gh repo clone mojeico/tmux
-ln -s ~/tmux/.tmux .tmux
-ln -s ~/tmux/.tmux.conf .tmux.conf 
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> ~/.zshrc
+
 
 #########################
 ######## UI Part ########
@@ -59,6 +54,13 @@ gh repo clone alvatip/Sunity-cursors ~/Downloads/Nordzy-icon
 ~/Downloads/Sunity-cursors/install.sh 
 
 
+#####################################
+###############GIT ##################
+#####################################
+
+
+git config --global user.name "Gleb Mojeico"
+git config --global user.email "g.mojeico@gmail.com"
 
 
 ############################
@@ -75,12 +77,21 @@ sudo yum -y install util-linux-user
 gh repo clone romkatv/powerlevel10k  $ZSH_CUSTOM/themes/powelevel10k/
 sed -i 's#robbyrussell#powerlevel10k/powerlevel10k#g' ~/.zshrc
 
-git config --global user.name "Gleb Mojeico"
-git config --global user.email "g.mojeico@gmail.com"
+
 
 gh repo clone mojeico/nvim ~/.config/nvim
 
 
 chsh -s $(which zsh)
+
+sudo dnf copr enable atim/lazygit -y
+sudo dnf -y install lazygit
+
+sudo dnf -y install fzf
+sudo yum install -y tmux
+
+gh repo clone mojeico/tmux
+ln -s ~/tmux/.tmux .tmux
+ln -s ~/tmux/.tmux.conf .tmux.conf 
 
 
