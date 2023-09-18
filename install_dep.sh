@@ -15,6 +15,10 @@ sudo yum -y upgrade
 sudo yum -y install epel-release
 sudo yum -y install htop
 
+sudo yum -y golang
+sudo yum -y nodejs
+
+sudo yum -y group install "Development Tools"
 
 sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
@@ -26,6 +30,11 @@ sudo chmod +x kubectl
 sudo mkdir -p ~/.local/bin
 sudo mv ./kubectl ~/.local/bin/kubectl
 
+
+sudo dnf copr enable atim/lazygit -y
+sudo dnf -y install lazygit
+
+sudo dnf -y install fzf
 
 ########################
 ####### UI Part ########
