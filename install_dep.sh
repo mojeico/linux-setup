@@ -35,6 +35,11 @@ sudo dnf -y install lazygit
 
 sudo dnf -y install fzf
 
+sudo yum install -y tmux
+
+gh repo clone mojeico/tmux
+ln -s ~/tmux/.tmux .tmux
+ln -s ~/tmux/.tmux.conf .tmux.conf 
 
 #########################
 ######## UI Part ########
