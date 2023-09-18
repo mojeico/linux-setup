@@ -35,9 +35,10 @@ sudo dnf -y install lazygit
 
 sudo dnf -y install fzf
 
-########################
-####### UI Part ########
-########################
+
+#########################
+######## UI Part ########
+#########################
 
 sudo dnf -y install gnome-tweak-tool
 
