@@ -56,6 +56,9 @@ gh repo clone alvatip/Sunity-cursors ~/Downloads/Nordzy-icon
 
 
 
+echo "test"
+
+
 ############################
 ########### TERMINAL ####### after this step - source ~/.zshrc
 ############################
