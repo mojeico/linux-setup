@@ -52,8 +52,8 @@ source ~/.zshrc
 sudo yum -y install htop
 sudo yum -y golang nodejs yum-utils
 sudo yum -y group install "Development Tools"
-
-
+sudo yum -y install ripgrep
+sudo yum -y install vim 
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 sudo yum -y install terraform
 
@@ -72,6 +72,24 @@ sudo dnf -y install k9s
 (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> ~/.zshrc
 
 brew install kubectx
+
+
+
+
+wget http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
+sudo mv virtualbox.repo /etc/yum.repos.d/virtualbox.repo
+
+sudo dnf install -y gcc binutils make glibc-devel patch libgomp glibc-headers  kernel-headers kernel-devel-`uname -r` dkms
+sudo dnf install -y VirtualBox-7.0
+
+
+sudo usermod -a -G vboxusers ${$(whoami)}
+sudo /usr/lib/virtualbox/vboxdrv.sh setup
+
+VER=$(curl -s https://download.virtualbox.org/virtualbox/LATEST.TXT)
+wget https://download.virtualbox.org/virtualbox/$VER/Oracle_VM_VirtualBox_Extension_Pack-$VER.vbox-extpack
+
+sudo dnf -y install vagrant
 
 
 #########################
