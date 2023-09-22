@@ -7,12 +7,15 @@ echo "test111"
 
 
 sudo yum -y update && sudo yum -y upgrade 
-sudo yum -y install epel-release snapd
-
-
+sudo yum -y install epel-release snapd dnf-plugins-core 
+sudo dnf install -y dnf-plugins-core
 ############################
 ########### TERMINAL ####### after this step - source ~/.zshrc
 ############################
+VERSION=`curl  "https://api.github.com/repos/cli/cli/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/' | cut -c2-` 
+curl -sSL https://github.com/cli/cli/releases/download/v${VERSION}/gh_${VERSION}_linux_amd64.tar.gz -o gh_${VERSION}_linux_amd64.tar.gz
+tar xvf gh_${VERSION}_linux_amd64.tar.gz
+sudo cp gh_${VERSION}_linux_amd64/bin/gh /usr/local/bin/
 
 
 sudo yum -y install neovim
@@ -35,13 +38,12 @@ sudo dnf copr enable atim/lazygit -y
 sudo dnf -y install lazygit
 
 sudo dnf -y install fzf
-sudo yum install -y tmux
+sudo yum -y install tmux
 
 gh repo clone mojeico/tmux
 ln -s ~/tmux/.tmux .tmux
 ln -s ~/tmux/.tmux.conf .tmux.conf 
 
-source ~/.zshrc
 
 
 ##########################
@@ -54,8 +56,9 @@ sudo yum -y golang nodejs yum-utils
 sudo yum -y group install "Development Tools"
 sudo yum -y install ripgrep
 sudo yum -y install vim 
-sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-sudo yum -y install terraform
+
+sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+sudo dnf -y install terraform
 
 
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -74,7 +77,7 @@ sudo dnf -y install k9s
 brew install kubectx
 
 
-
+sudo yum install -y awscli
 
 wget http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
 sudo mv virtualbox.repo /etc/yum.repos.d/virtualbox.repo
@@ -90,6 +93,15 @@ VER=$(curl -s https://download.virtualbox.org/virtualbox/LATEST.TXT)
 wget https://download.virtualbox.org/virtualbox/$VER/Oracle_VM_VirtualBox_Extension_Pack-$VER.vbox-extpack
 
 sudo dnf -y install vagrant
+
+
+
+mkdir -p ~/.local/bin
+CURRENT_VERSION=$(curl -Ls https://api.github.com/repos/Versent/saml2aws/releases/latest | grep 'tag_name' | cut -d'v' -f2 | cut -d'"' -f1)
+sudo wget -c "https://github.com/Versent/saml2aws/releases/download/v${CURRENT_VERSION}/saml2aws_${CURRENT_VERSION}_linux_amd64.tar.gz" -O - | sudo tar -xzv -C ~/.local/bin
+sudo chmod u+x ~/.local/bin/saml2aws
+hash -r
+saml2aws --version
 
 
 #########################
@@ -125,3 +137,9 @@ git config --global user.email "g.mojeico@gmail.com"
 ############################
 
 
+
+
+
+
+echo "-------------------"
+echo "Please run - source ~/.zshrc"
