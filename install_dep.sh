@@ -9,14 +9,14 @@ echo "test111"
 sudo yum -y update && sudo yum -y upgrade 
 sudo yum -y install epel-release snapd dnf-plugins-core 
 sudo dnf install -y dnf-plugins-core
-############################
-########### TERMINAL ####### after this step - source ~/.zshrc
-############################
 VERSION=`curl  "https://api.github.com/repos/cli/cli/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/' | cut -c2-` 
 curl -sSL https://github.com/cli/cli/releases/download/v${VERSION}/gh_${VERSION}_linux_amd64.tar.gz -o gh_${VERSION}_linux_amd64.tar.gz
 tar xvf gh_${VERSION}_linux_amd64.tar.gz
 sudo cp gh_${VERSION}_linux_amd64/bin/gh /usr/local/bin/
 
+############################
+########### TERMINAL ####### ---  after this step - source ~/.zshrc
+############################
 
 sudo yum -y install neovim
 
