@@ -10,8 +10,8 @@ sudo yum -y update && sudo yum -y upgrade
 sudo yum -y install epel-release snapd dnf-plugins-core 
 sudo dnf install -y dnf-plugins-core
 
-sudo yum install gh
-suto yum install git 
+sudo yum -y install gh
+suto yum -y install git 
 ############################
 ########### TERMINAL ####### ---  after this step - source ~/.zshrc
 ############################
@@ -38,9 +38,9 @@ sudo dnf -y install lazygit
 sudo dnf -y install fzf
 sudo yum -y install tmux
 
-gh repo clone mojeico/tmux
-ln -s ~/tmux/.tmux .tmux
-ln -s ~/tmux/.tmux.conf .tmux.conf 
+gh repo clone mojeico/tmux ~/tmux
+ln -s ~/tmux/.tmux ~/.tmux
+ln -s ~/tmux/.tmux.conf ~/.tmux.conf 
 
 
 
