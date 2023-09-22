@@ -9,11 +9,9 @@ echo "test111"
 sudo yum -y update && sudo yum -y upgrade 
 sudo yum -y install epel-release snapd dnf-plugins-core 
 sudo dnf install -y dnf-plugins-core
-VERSION=`curl  "https://api.github.com/repos/cli/cli/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/' | cut -c2-` 
-curl -sSL https://github.com/cli/cli/releases/download/v${VERSION}/gh_${VERSION}_linux_amd64.tar.gz -o gh_${VERSION}_linux_amd64.tar.gz
-tar xvf gh_${VERSION}_linux_amd64.tar.gz
-sudo cp gh_${VERSION}_linux_amd64/bin/gh /usr/local/bin/
 
+sudo yum install gh
+suto yum install git 
 ############################
 ########### TERMINAL ####### ---  after this step - source ~/.zshrc
 ############################
@@ -86,7 +84,7 @@ sudo dnf install -y gcc binutils make glibc-devel patch libgomp glibc-headers  k
 sudo dnf install -y VirtualBox-7.0
 
 
-sudo usermod -a -G vboxusers ${$(whoami)}
+sudo usermod -a -G vboxusers $(whoami)
 sudo /usr/lib/virtualbox/vboxdrv.sh setup
 
 VER=$(curl -s https://download.virtualbox.org/virtualbox/LATEST.TXT)
